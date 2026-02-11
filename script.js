@@ -140,8 +140,8 @@ function renderRepoCards(repos) {
 
   if (filteredRepos.length === 0) {
     reposGrid.innerHTML = `
-            <div class="repo-empty">
-                <p>No repositories found yet. Check back soon!</p>
+            <div class="repo-card">
+                <p class="repo-description">$ ls: directory empty. No repositories found.</p>
             </div>
         `;
     return;
@@ -150,53 +150,19 @@ function renderRepoCards(repos) {
   reposGrid.innerHTML = filteredRepos
     .map(
       (repo, index) => `
-        <div class="repo-card" style="animation: fadeInUp 0.5s ease forwards ${index * 0.1}s; opacity: 0;">
+        <div class="repo-card">
             <div class="repo-header">
-                <svg class="repo-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-                    <path d="M9 18c-4.51 2-5-2-7-2"/>
-                </svg>
-                <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="repo-link" aria-label="View on GitHub">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                        <polyline points="15 3 21 3 21 9"/>
-                        <line x1="10" y1="14" x2="21" y2="3"/>
-                    </svg>
-                </a>
+                <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="repo-name">${repo.name}</a>
             </div>
-            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="repo-name">
-                ${repo.name}
-            </a>
-            <p class="repo-description">
-                ${repo.description || "No description available"}
-            </p>
+            <p class="repo-description">${repo.description || "No description"}</p>
             <div class="repo-footer">
                 ${
                   repo.language
-                    ? `
-                    <span class="repo-language">
-                        <span class="language-dot" style="background-color: ${languageColors[repo.language] || "#858585"}"></span>
-                        ${repo.language}
-                    </span>
-                `
+                    ? `<span class="repo-language">${repo.language}</span>`
                     : ""
                 }
-                <span class="repo-stat">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                    </svg>
-                    ${repo.stargazers_count}
-                </span>
-                <span class="repo-stat">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="18" r="3"/>
-                        <circle cx="6" cy="6" r="3"/>
-                        <circle cx="18" cy="6" r="3"/>
-                        <path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"/>
-                        <path d="M12 12v3"/>
-                    </svg>
-                    ${repo.forks_count}
-                </span>
+                <span class="repo-stat">★ ${repo.stargazers_count}</span>
+                <span class="repo-stat">⑂ ${repo.forks_count}</span>
             </div>
         </div>
     `,
@@ -208,12 +174,7 @@ function renderRepoCards(repos) {
 function renderRepoError() {
   reposGrid.innerHTML = `
         <div class="repo-card">
-            <p class="repo-description" style="text-align: center;">
-                Unable to load repositories at this time. 
-                <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" rel="noopener noreferrer" style="color: var(--primary-light);">
-                    Visit my GitHub profile
-                </a>
-            </p>
+            <p class="repo-description">ERROR: Failed to fetch repositories. <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" rel="noopener noreferrer" style="color: var(--term-cyan);">Try manually → github.com/${GITHUB_USERNAME}</a></p>
         </div>
     `;
 }
@@ -259,3 +220,30 @@ document.addEventListener("keydown", (e) => {
     navMenu.classList.remove("active");
   }
 });
+
+// ===== See More Toggle =====
+const seeMoreBtn = document.getElementById("see-more-btn");
+const timeline = document.getElementById("timeline");
+
+if (seeMoreBtn && timeline) {
+  seeMoreBtn.addEventListener("click", () => {
+    timeline.classList.toggle("expanded");
+
+    // Update button text
+    const textSpan = seeMoreBtn.querySelector(".see-more-text");
+    if (timeline.classList.contains("expanded")) {
+      textSpan.textContent = "[ See Less ]";
+      // Trigger staggered animation for newly visible items
+      const hiddenItems = timeline.querySelectorAll(
+        ".timeline-item:nth-child(n+4)",
+      );
+      hiddenItems.forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add("visible");
+        }, index * 150);
+      });
+    } else {
+      textSpan.textContent = "[ See More ]";
+    }
+  });
+}

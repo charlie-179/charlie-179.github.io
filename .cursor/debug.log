@@ -1,0 +1,22 @@
+{"location":"script.js:227","message":"See More init - checking elements","data":{"seeMoreBtnFound":true,"timelineFound":true,"readyState":"loading"},"timestamp":1770773638454,"hypothesisId":"A,D"}
+{"location":"script.js:233","message":"Adding click listener to button","data":{"buttonId":"see-more-btn"},"timestamp":1770773638454,"hypothesisId":"B"}
+{"location":"script.js:237","message":"Button clicked!","data":{"timelineClassesBefore":"timeline"},"timestamp":1770773640228,"hypothesisId":"C"}
+{"location":"script.js:242","message":"After toggle","data":{"timelineClassesAfter":"timeline expanded","isExpanded":true},"timestamp":1770773640229,"hypothesisId":"C"}
+{"location":"script.js:237","message":"Button clicked!","data":{"timelineClassesBefore":"timeline expanded"},"timestamp":1770773644287,"hypothesisId":"C"}
+{"location":"script.js:242","message":"After toggle","data":{"timelineClassesAfter":"timeline","isExpanded":false},"timestamp":1770773644288,"hypothesisId":"C"}
+{"location":"script.js:237","message":"Button clicked!","data":{"timelineClassesBefore":"timeline"},"timestamp":1770773645162,"hypothesisId":"C"}
+{"location":"script.js:242","message":"After toggle","data":{"timelineClassesAfter":"timeline expanded","isExpanded":true},"timestamp":1770773645163,"hypothesisId":"C"}
+{"location":"script.js:237","message":"Button clicked!","data":{"timelineClassesBefore":"timeline expanded"},"timestamp":1770773648812,"hypothesisId":"C"}
+{"location":"script.js:242","message":"After toggle","data":{"timelineClassesAfter":"timeline","isExpanded":false},"timestamp":1770773648812,"hypothesisId":"C"}
+{"location":"script.js:237","message":"Button clicked!","data":{"timelineClassesBefore":"timeline"},"timestamp":1770773649526,"hypothesisId":"C"}
+{"location":"script.js:242","message":"After toggle","data":{"timelineClassesAfter":"timeline expanded","isExpanded":true},"timestamp":1770773649526,"hypothesisId":"C"}
+{"location":"script.js:237","message":"Button clicked!","data":{"timelineClassesBefore":"timeline expanded"},"timestamp":1770773651197,"hypothesisId":"C"}
+{"location":"script.js:242","message":"After toggle","data":{"timelineClassesAfter":"timeline","isExpanded":false},"timestamp":1770773651198,"hypothesisId":"C"}
+{"location":"script.js:237","message":"Button clicked!","data":{"timelineClassesBefore":"timeline"},"timestamp":1770773653262,"hypothesisId":"C"}
+{"location":"script.js:242","message":"After toggle","data":{"timelineClassesAfter":"timeline expanded","isExpanded":true},"timestamp":1770773653262,"hypothesisId":"C"}
+{"location":"script.js:237","message":"Button clicked!","data":{"timelineClassesBefore":"timeline expanded"},"timestamp":1770773655137,"hypothesisId":"C"}
+{"location":"script.js:242","message":"After toggle","data":{"timelineClassesAfter":"timeline","isExpanded":false},"timestamp":1770773655138,"hypothesisId":"C"}
+{"location":"script.js:237","message":"Button clicked!","data":{"timelineClassesBefore":"timeline"},"timestamp":1770773658228,"hypothesisId":"C"}
+{"location":"script.js:242","message":"After toggle","data":{"timelineClassesAfter":"timeline expanded","isExpanded":true},"timestamp":1770773658229,"hypothesisId":"C"}
+{"location":"script.js:237","message":"Button clicked!","data":{"timelineClassesBefore":"timeline expanded"},"timestamp":1770773756312,"hypothesisId":"C"}
+{"location":"script.js:242","message":"After toggle","data":{"timelineClassesAfter":"timeline","isExpanded":false},"timestamp":1770773756313,"hypothesisId":"C"}
